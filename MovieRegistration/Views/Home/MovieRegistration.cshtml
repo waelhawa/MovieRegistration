@@ -1,0 +1,54 @@
+﻿@model Movie
+
+@{
+    ViewData["Title"] = "Movie Registration form";
+}
+
+@*@Html.DropDownListFor(m => m.Genre,
+            new SelectList(Enum.GetValues(typeof(Genre))),
+            "Select Genre");*@
+
+<form asp-action="DisplayMovie" method="post">
+    <label class="col-1" asp-for="Id">ID</label>
+    <input type="number" asp-for="Id" value="@Model.Id" />
+    <br />
+
+    <label class="col-1" asp-for="Title"></label>
+    <input type="text" asp-for="Title" value="@Model.Title" />
+    @Html.ValidationMessageFor(x => x.Title)
+
+    <br />
+
+    <label class="col-1" asp-for="Genre"></label>
+    @Html.DropDownListFor(m => m.Genre,
+            new SelectList(Enum.GetValues(typeof(Genre))),
+            "Select Genre")
+    @*<select type="text" asp-for="Genre" value="@Model.Genre" >
+            <option>Horror</option>
+            <option>Action</option>
+            <option>Comedy</option>
+            <option>Anime</option>
+            <option>Cartoon</option>
+            <option>Family</option>
+        </select>*@
+
+    <br />
+
+    <label class="col-1" asp-for="Year"></label>
+    <input type="date" asp-for="Year" value="@Model.Year" />
+    @Html.ValidationMessageFor(x => x.Year)
+    <br />
+
+    <label class="col-1" asp-for="Actors"></label>
+    <input type="text" asp-for="Actors" value="@Model.Actors" />
+
+    <br />
+
+    <label class="col-1" asp-for="Directors"></label>
+    <input type="text" asp-for="Directors" value="@Model.Directors" />
+
+    <br />
+
+    <input type="submit" value="Add this Movie!" />
+
+</form>
